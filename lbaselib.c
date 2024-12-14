@@ -263,6 +263,21 @@ static int luaB_type (lua_State *L) {
   return 1;
 }
 
+static int pairsmeta (lua_State *L, const char *method, int iszero,
+                      lua_CFunction iter) {
+  luaL_checkany(L, 1);
+  if (luaL_getmetafield(L, 1, method) == LUA_TNIL) {  /* no metamethod? */
+    lua_pushcfunction(L, iter);  /* will return generator, */
+    lua_pushvalue(L, 1);  /* state, */
+    if (iszero) lua_pushinteger(L, 0);  /* and initial value */
+    else lua_pushnil(L);
+  }
+  else {
+    lua_pushvalue(L, 1);  /* argument 'self' to metamethod */
+    lua_call(L, 1, 3);  /* get 3 values from metamethod */
+  }
+  return 3;
+}
 
 static int luaB_next (lua_State *L) {
   luaL_checktype(L, 1, LUA_TTABLE);
