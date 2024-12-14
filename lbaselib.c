@@ -312,11 +312,7 @@ static int ipairsaux (lua_State *L) {
 ** (The given "table" may not be a table.)
 */
 static int luaB_ipairs (lua_State *L) {
-  luaL_checkany(L, 1);
-  lua_pushcfunction(L, ipairsaux);  /* iteration function */
-  lua_pushvalue(L, 1);  /* state */
-  lua_pushinteger(L, 0);  /* initial value */
-  return 3;
+  return pairsmeta(L, "__ipairs", 1, ipairsaux);
 }
 
 
