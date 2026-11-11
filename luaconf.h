@@ -120,12 +120,6 @@
 
 
 /*
-@@ LUA_32BITS enables Lua with 32-bit integers and 32-bit floats.
-*/
-#define LUA_32BITS	0
-
-
-/*
 @@ LUA_C89_NUMBERS ensures that Lua uses the largest types available for
 ** C89 ('long' and 'double'); Windows always has '__int64', so it does
 ** not need to use this case.
