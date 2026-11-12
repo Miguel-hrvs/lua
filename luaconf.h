@@ -95,6 +95,11 @@
 
 
 /*
+@@ LUA_32BITS enables Lua with 32-bit integers and 32-bit floats.
+*/
+#define LUA_32BITS	1
+
+/*
 @@ LUAI_IS32INT is true iff 'int' has (at least) 32 bits.
 */
 #define LUAI_IS32INT	((UINT_MAX >> 30) >= 3)
